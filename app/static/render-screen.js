@@ -1,10 +1,10 @@
-export function setupScreen(canvas, game) {
+function setupScreen(canvas, game) {
     const { screen: {width, height, pixelsPerFields} } = game.state
     canvas.width = width * pixelsPerFields
     canvas.height = height * pixelsPerFields
 }
 
-export default function renderScreen(screen, scoreTable, game, requestAnimationFrame, currentPlayerId) {
+function renderScreen(screen, scoreTable, game, requestAnimationFrame, currentPlayerId) {
     const context = screen.getContext('2d')
     context.fillStyle = 'white'
     const { screen: { width, height, pixelsPerFields }} = game.state

@@ -1,3 +1,4 @@
 /* Mod que retorna positivo para números negativos */
-export const mod = (x, y) => ((y % x) + x) % x 
-
+function mod(x, y) {
+    return ((y % x) + x) % x 
+}

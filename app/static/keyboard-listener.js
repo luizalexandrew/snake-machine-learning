@@ -1,4 +1,4 @@
-export default function createKeyboardListener(document) {
+function createKeyboardListener(document) {
     const state = {
         observers: [],
         playerId: null
