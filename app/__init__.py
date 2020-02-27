@@ -26,6 +26,6 @@ def handle_my_custom_event():
 def handle_my_custom_event():
     print("*********** connect")
 
-    game.start()
+    game()
     
 from app.controllers import default

@@ -11,8 +11,17 @@ function renderScreen(screen, game) {
     const { width, height, pixelsPerFields } = game
     context.clearRect(0, 0, width * pixelsPerFields, height * pixelsPerFields)
 
-    drawPlayer(context, game.player, game)
-    drawFruit(context, game.fruit, game)        
+    drawPlayer(context, {
+        "name": game.name,
+        "x": game.x,
+        "y": game.y,
+        "color": game.color
+    }, game)
+
+    drawFruit(context, {
+        "x": game.fx,
+        "y": game.fy,
+    }, game)        
 
     // requestAnimationFrame(() => {
     //     renderScreen(screen, game)

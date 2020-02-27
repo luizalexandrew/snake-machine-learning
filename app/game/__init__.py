@@ -1,33 +1,32 @@
 from flask_socketio import SocketIO, send, emit
-import random
+from app.game.state import GameState
+import json
 
 class Game:
 
     def __init__(self, gamesocket):
         self.gamesocket = gamesocket 
-        self.state = {} 
+        self.state = None
+        self.started = False 
 
     def startGame(self):
-        self.state = {
-            "width": 100, 
-            "height": 100, 
-            "pixelsPerFields": 5,
-            "player": {
-                "name": 'teste',
-                "x": random.randint(0,34),
-                "y": random.randint(0,34),
-                "color": '#0D47A1'
-            },
-            "fruit": {  
-                "x": random.randint(0,34),
-                "y": random.randint(0,34)
-            },
-            "point": 0
-        }
+        self.state = GameState()
+        self.started = True
+        self.run()
 
     def send(self):
-        self.gamesocket(self.state) 
+        self.gamesocket(json.dumps(self.state.__dict__)) 
 
-    def start(self):
-        self.startGame()
+    def __call__(self):
+        if(self.started):
+            self.run()
+        else:
+            self.startGame()
+            self.run()
+
+    def run(self):
+        self.state.x += 1 
         self.send()
+       
+
+        

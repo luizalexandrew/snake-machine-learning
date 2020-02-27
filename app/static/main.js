@@ -77,7 +77,7 @@ socket.on('disconnect', () => {
 })
 
 socket.on('update-screen', (data) => {
-    renderScreen(screen, data)
+    renderScreen(screen, JSON.parse(data))
 })
 
 // socket.on('setup', (state) => {
