@@ -1,14 +1,18 @@
 from flask import Flask
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send, emit
+from app.gamesocket import GameSocket
 from app.game import Game
+
+
 
 app = Flask(__name__)
 app.config.from_object('config')
 socketio = SocketIO(app)
 
-myGame = Game(emit)
-
+gamesocket = GameSocket(emit)
+game = Game(gamesocket)
+import time
 
 @socketio.on('hello')
 def handle_message(message):
@@ -16,13 +20,12 @@ def handle_message(message):
 
 @socketio.on('connect')
 def handle_my_custom_event():
-    print('received json: ')
-
+    print("*********** connect")
 
 @socketio.on('start')
-def handle_my_custom_event(teste):
-    myGame.send()
+def handle_my_custom_event():
+    print("*********** connect")
 
-
-
+    game.start()
+    
 from app.controllers import default

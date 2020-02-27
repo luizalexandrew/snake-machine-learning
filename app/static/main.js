@@ -52,10 +52,8 @@ const socket = io()
 socket.on('connect', () => {
 
 
-    setInterval(()=>{
-        socket.emit('start', '>DDDDDD')
-        count++
-    },1)
+    socket.emit('start')
+    
 
 
 
@@ -79,9 +77,7 @@ socket.on('disconnect', () => {
 })
 
 socket.on('update-screen', (data) => {
-    console.log('Atualizando Tela', data)
     renderScreen(screen, data)
-
 })
 
 // socket.on('setup', (state) => {
